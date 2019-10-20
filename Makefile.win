@@ -1,0 +1,60 @@
+# Project: PizzaPim
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = Pizzaria_private.res
+OBJ      = main.o modulo_cliente.o menu_cliente.o modulo_vendas.o modulo_funcionarios.o menu_funcionarios.o menu_produtos.o modulo_produto.o menu_vendas.o loading.o $(RES)
+LINKOBJ  = main.o modulo_cliente.o menu_cliente.o modulo_vendas.o modulo_funcionarios.o menu_funcionarios.o menu_produtos.o modulo_produto.o menu_vendas.o loading.o $(RES)
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -pg
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = Pizzaria.exe
+CXXFLAGS = $(CXXINCS) -pg
+CFLAGS   = $(INCS) -pg
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+modulo_cliente.o: modulo_cliente.c
+	$(CC) -c modulo_cliente.c -o modulo_cliente.o $(CFLAGS)
+
+menu_cliente.o: menu_cliente.c
+	$(CC) -c menu_cliente.c -o menu_cliente.o $(CFLAGS)
+
+modulo_vendas.o: modulo_vendas.c
+	$(CC) -c modulo_vendas.c -o modulo_vendas.o $(CFLAGS)
+
+modulo_funcionarios.o: modulo_funcionarios.c
+	$(CC) -c modulo_funcionarios.c -o modulo_funcionarios.o $(CFLAGS)
+
+menu_funcionarios.o: menu_funcionarios.c
+	$(CC) -c menu_funcionarios.c -o menu_funcionarios.o $(CFLAGS)
+
+menu_produtos.o: menu_produtos.c
+	$(CC) -c menu_produtos.c -o menu_produtos.o $(CFLAGS)
+
+modulo_produto.o: modulo_produto.c
+	$(CC) -c modulo_produto.c -o modulo_produto.o $(CFLAGS)
+
+menu_vendas.o: menu_vendas.c
+	$(CC) -c menu_vendas.c -o menu_vendas.o $(CFLAGS)
+
+loading.o: loading.c
+	$(CC) -c loading.c -o loading.o $(CFLAGS)
+
+Pizzaria_private.res: Pizzaria_private.rc 
+	$(WINDRES) -i Pizzaria_private.rc --input-format=rc -o Pizzaria_private.res -O coff 
+
